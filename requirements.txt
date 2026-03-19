@@ -1,5 +1,6 @@
 streamlit
 langchain
+langchain-community
 langchain-openai
 langgraph
 azure-search-documents==11.4.0
