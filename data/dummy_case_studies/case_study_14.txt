@@ -1,0 +1,8 @@
+Project Name: Project Telemetry
+Industry: Automotive
+The Client Challenge: An electric vehicle (EV) startup was preparing to launch their first fleet. They needed a cloud infrastructure capable of ingesting high-frequency telemetry data (battery health, motor RPM, brake pressure) from thousands of cars simultaneously to train their predictive maintenance models.
+Our Technical Solution: We designed a highly scalable, serverless IoT ingestion pipeline on AWS. Vehicles were configured to use MQTT protocols to securely stream encrypted telemetry packets to AWS IoT Core. IoT Core acted as the highly available entry point, utilizing rule engines to immediately route critical alerts (e.g., battery overheating) directly to SNS for engineering notifications.
+The bulk telemetry data was buffered using Amazon Kinesis Data Streams to prevent database throttling during high-traffic driving hours. AWS Lambda functions were attached to the Kinesis streams to consume, validate, and flatten the JSON payloads on the fly.
+The processed telemetry was then written into Amazon DynamoDB, utilizing partition keys based on Vehicle Identification Numbers (VIN) and sort keys based on timestamps. This NoSQL design allowed their mobile app to instantly query the latest state of any specific vehicle, while an asynchronous process exported historical data to S3 for deep learning model training.
+The ROI & Impact: Successfully load-tested to support 100,000 concurrent vehicles transmitting data at 10Hz. Architecture scaled automatically, keeping cloud costs strictly proportional to actual fleet size.
+Total Project Cost: $480,000

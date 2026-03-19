@@ -1,0 +1,8 @@
+Project Name: Project Forge
+Industry: Manufacturing
+The Client Challenge: An automotive parts manufacturer was running their entire ERP system on a single, aging on-premise Microsoft SQL Server. Hardware failures were becoming frequent, and the server was out of warranty. They required a zero-data-loss migration to the cloud with less than 4 hours of acceptable downtime.
+Our Technical Solution: We architected a comprehensive migration strategy to move their on-premise SQL Server to Amazon Aurora (PostgreSQL-compatible) to reduce long-term licensing costs while gaining cloud-native high availability. The first step involved a thorough schema conversion using the AWS Schema Conversion Tool (SCT), rewriting proprietary T-SQL stored procedures into standard PL/pgSQL.
+To handle the data migration with minimal downtime, we deployed AWS Database Migration Service (DMS). We set up an initial full load of the 4TB database, followed by continuous Change Data Capture (CDC) replication. This kept the new Aurora database perfectly synchronized with the on-premise system for weeks while the application tier was tested.
+On cutover day, the application connection strings were repointed to the Aurora cluster via Route 53 DNS swap. We also implemented AWS Backup for automated, cross-region snapshotting, and utilized Aurora Auto-Scaling to dynamically adjust read replicas based on shift-worker reporting demands.
+The ROI & Impact: Achieved migration with only 45 minutes of application downtime. Eliminated $85,000 in annual on-prem SQL Server licensing and maintenance costs.
+Total Project Cost: $195,000

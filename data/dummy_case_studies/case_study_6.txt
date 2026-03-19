@@ -1,0 +1,9 @@
+Group 2: Data Engineering, Pipelines & Cloud Migration
+Project Name: Project Pulse
+Industry: Healthcare
+The Client Challenge: A major hospital network had siloed patient data spread across three different on-premise EMR (Electronic Medical Record) systems. Their data science team spent 80% of their time manually extracting and cleaning CSVs, making predictive analytics for patient readmission impossible to run at scale.
+Our Technical Solution: We engineered a modern, HIPAA-compliant Lakehouse architecture using Databricks on AWS. We began by establishing automated ingestion pipelines using AWS Glue to extract raw data from the disparate on-prem EMR databases (SQL Server and Oracle) and load it into an Amazon S3 raw data lake.
+Within Databricks, we utilized PySpark to build scalable ETL pipelines. We structured the data using Delta Lake architecture (Bronze, Silver, Gold layers). The Silver layer handled heavy deduplication, data masking of PHI (Protected Health Information), and standardization of medical coding. The Gold layer housed highly refined, aggregated tables optimized for machine learning.
+Finally, we exposed the Gold layer to Snowflake via Databricks integrations. This allowed the hospital's BI analysts to use standard SQL via Tableau for operational reporting, while the data scientists natively utilized the Databricks ML runtime to train and deploy readmission prediction models using MLflow.
+The ROI & Impact: Reduced data preparation time for predictive models by 85%. Enabled daily (instead of monthly) dashboard refreshes, identifying $1.2M in billing inefficiencies.
+Total Project Cost: $550,000

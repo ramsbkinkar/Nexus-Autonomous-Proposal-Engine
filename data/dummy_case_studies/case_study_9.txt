@@ -1,0 +1,8 @@
+Project Name: Project Catalyst
+Industry: Energy & Utilities
+The Client Challenge: A regional utility provider had 15 years of smart meter reading data locked in a rigid, on-premise Oracle database. Querying historical usage trends took hours, severely hindering their ability to forecast peak grid demand and set dynamic pricing.
+Our Technical Solution: We executed a lift-and-shift modernization, migrating the Oracle workloads to Microsoft Azure. We utilized Azure Data Factory (ADF) to orchestrate the mass extraction of historical tables. ADF pipelines securely connected to the on-prem network via Azure ExpressRoute, moving over 10TB of telemetry data into Azure Data Lake Storage Gen2.
+Once in the Data Lake, we implemented Snowflake as the central cloud data platform. We used Snowpipe for continuous, automated ingestion of new smart meter readings. The data was modeled in Snowflake using a Star Schema, specifically optimized for time-series analysis and rapid aggregations.
+To secure the infrastructure, we implemented Azure Active Directory (Entra ID) SSO integration with Snowflake, ensuring role-based access control (RBAC) so that analysts could only access data relevant to their specific grid zones.
+The ROI & Impact: Improved historical trend query latency from 4 hours to under 3 seconds. Enabled real-time dynamic pricing models, optimizing grid load during summer heatwaves.
+Total Project Cost: $410,000

@@ -1,0 +1,8 @@
+Project Name: Project Omni-Scale
+Industry: Consumer Goods
+The Client Challenge: A rapidly growing DTC (Direct-to-Consumer) brand was struggling with their checkout API, which was tightly integrated with a legacy monolithic architecture. As order volumes scaled to over 10,000 per hour, API bottlenecks caused inventory desynchronization, resulting in overselling products and significant customer service backlog.
+Our Technical Solution: We led a strategic migration from a monolithic backend to an API-first microservices architecture running on Kubernetes (EKS on AWS). We containerized the critical checkout, inventory, and payment services using Docker, ensuring that each domain could scale independently based on real-time traffic demands.
+To facilitate resilient communication between these microservices, we implemented an event-driven architecture. We deployed Apache Kafka to manage asynchronous message queuing between the order service and the inventory service. When a checkout occurred, an event was published to Kafka, guaranteeing that inventory was decremented reliably without blocking the user's immediate checkout flow.
+For the API layer, we deployed an AWS API Gateway with robust rate limiting and WAF rules to protect against malicious traffic. We also integrated Datadog for distributed tracing, allowing the DevOps team to monitor the exact lifecycle of an API request across all microservices and rapidly identify any latency bottlenecks.
+The ROI & Impact: Eliminated inventory overselling issues completely. Increased API throughput from 500 requests per second to 8,000 requests per second with sub-50ms latency.
+Total Project Cost: $450,000

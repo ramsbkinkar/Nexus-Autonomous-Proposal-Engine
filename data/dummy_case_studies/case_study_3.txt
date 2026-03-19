@@ -1,0 +1,8 @@
+Project Name: Project LedgerShift
+Industry: Finance / FinTech
+The Client Challenge: A regional credit union's customer portal was an outdated, server-rendered ASP.NET application. Users complained of clunky navigation, poor mobile responsiveness, and frequent session timeouts. The client needed a modern, highly secure single-page application (SPA) that could seamlessly integrate with their core banking APIs.
+Our Technical Solution: We developed a secure, responsive SPA using React, utilizing Redux for complex state management across user sessions. The application architecture was designed with strict adherence to OWASP security standards, implementing robust JWT-based authentication with short-lived tokens and secure HTTP-only cookies to mitigate XSS and CSRF vulnerabilities.
+The middle tier was constructed using a Node.js/NestJS backend designed to act as a secure proxy and aggregation layer. This layer abstracted the complex, legacy SOAP APIs of the core banking system, translating them into clean, documented RESTful endpoints for the React frontend. This separation of concerns protected the core banking system from direct internet exposure.
+We implemented automated CI/CD pipelines using GitHub Actions, integrating static code analysis (SonarQube) and automated vulnerability scanning (Snyk) into the build process. The application was deployed onto AWS Fargate for serverless container management, ensuring high availability and seamless scaling.
+The ROI & Impact: Increased mobile banking adoption by 45% within three months. Reduced customer support calls regarding login and navigation issues by 60%.
+Total Project Cost: $275,000

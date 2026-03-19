@@ -1,0 +1,8 @@
+Project Name: Project Horizon
+Industry: Hospitality
+The Client Challenge: A massive resort network was overwhelmed by repetitive customer support queries (booking modifications, amenity hours, dining reservations). Their human agents were bogged down, causing wait times to exceed 20 minutes, which severely impacted guest satisfaction scores.
+Our Technical Solution: We engineered an autonomous AI support agent powered by a highly customized RAG architecture. We ingested the resort's entire internal knowledge base—including dynamic API specs for real-time booking availability, static FAQs, and policy documents—and indexed them into Weaviate, an open-source vector database.
+The core logic was built using LlamaIndex and FastAPI. We designed an intelligent agent workflow capable of tool-use. If a user asked a static question ("What time does the pool open?"), the agent used RAG to fetch the answer from Weaviate. If the user asked a transactional question ("Can I upgrade my room for tomorrow?"), the agent utilized external tool-calling to ping the resort's live booking API, parse the JSON response, and reply naturally.
+The frontend chat interface was integrated directly into their mobile app using WebSockets for a seamless, typing-indicator experience. Strict safety guardrails were implemented via prompt engineering to ensure the bot never promised refunds or hallucinated policies.
+The ROI & Impact: Deflected 62% of Tier-1 support tickets entirely. Reduced average customer wait times from 22 minutes to instantaneous resolution.
+Total Project Cost: $240,000

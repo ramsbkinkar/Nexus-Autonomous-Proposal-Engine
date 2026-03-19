@@ -1,0 +1,8 @@
+Project Name: Project Streamline
+Industry: Media & Entertainment
+The Client Challenge: A streaming media company was unable to accurately track user engagement metrics (play, pause, skip events) across their platforms. Their existing batch-processing scripts crashed daily due to the sheer volume of log data (terabytes per day), leaving marketing blind to what content was actually performing well.
+Our Technical Solution: We discarded their legacy cron-job scripts and built a robust, distributed data pipeline using Apache Airflow and PySpark. Raw event logs were ingested continuously via Amazon Kinesis Data Firehose and dumped into an S3 bucket partitioned by date and event type.
+Airflow was deployed on an Amazon EKS cluster to orchestrate the daily processing workflows. We wrote complex PySpark jobs to read the partitioned S3 data, clean malformed JSON payloads, sessionize user activity (grouping individual clicks into cohesive viewing sessions), and calculate watch-time metrics.
+The processed data was written out in Parquet format to optimize query performance and reduce storage costs. We then utilized AWS Athena to allow data analysts to run ad-hoc serverless SQL queries directly against the Parquet files in S3, bypassing the need for a costly, always-on data warehouse for exploratory data analysis.
+The ROI & Impact: Successfully processed 3TB of daily log data without a single pipeline failure for 6 months. Reduced data processing cloud compute costs by 41% through Parquet optimization.
+Total Project Cost: $280,000

@@ -1,0 +1,8 @@
+Project Name: Project Silk Route
+Industry: Logistics & Supply Chain
+The Client Challenge: The client relied on an archaic web portal to track global shipments. The portal required manual page refreshes to update freight coordinates, and the underlying database queries took minutes to resolve. Dispatchers were unable to make real-time routing decisions, leading to fuel waste and missed delivery windows.
+Our Technical Solution: We built a real-time tracking dashboard utilizing React and WebSockets. By replacing standard HTTP polling with a persistent WebSocket connection via Socket.io, the frontend client could receive instantaneous, bi-directional updates the moment a freight vehicle's GPS coordinate changed.
+The backend was engineered using Node.js, designed specifically to handle thousands of concurrent socket connections efficiently. We implemented Redis Pub/Sub to broker messages across multiple backend instances, ensuring that even if the Node server scaled horizontally, all connected clients received the necessary geospatial updates.
+To map the data visually, we integrated Mapbox GL JS, customizing the rendering engine to handle tens of thousands of simultaneous data points (vehicles, depots, routes) without dropping browser frame rates. Complex geospatial queries were offloaded to PostGIS (a PostgreSQL extension), optimizing spatial indexing for rapid radius and route-overlap calculations.
+The ROI & Impact: Improved average tracking latency from 3 minutes to 400 milliseconds. Optimized routing decisions led to a 12% reduction in fleet fuel consumption.
+Total Project Cost: $310,000

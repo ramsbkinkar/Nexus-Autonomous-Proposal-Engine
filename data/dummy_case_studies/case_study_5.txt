@@ -1,0 +1,8 @@
+Project Name: Project Atlas
+Industry: Travel & Hospitality
+The Client Challenge: A global hotel chain's booking engine was suffering from severe latency during peak booking seasons. Their architecture relied on a massive SQL database that handled both read (searching availability) and write (booking) operations, creating massive deadlocks and preventing users from completing reservations.
+Our Technical Solution: We implemented the CQRS (Command Query Responsibility Segregation) pattern to completely separate the read and write workloads. For the "write" database handling the actual bookings, we maintained their hardened PostgreSQL cluster to ensure strict ACID compliance and transactional integrity.
+For the "read" side (the availability search engine), we built a highly optimized data pipeline that continuously replicated inventory data into Elasticsearch. The React-based frontend was updated to query the Elasticsearch cluster directly. This allowed for lightning-fast, full-text, and faceted searches across millions of date/location combinations without ever touching the primary transactional database.
+To orchestrate this data synchronization, we utilized AWS Database Migration Service (DMS) alongside AWS Lambda functions to capture change data (CDC) from PostgreSQL and index it into Elasticsearch in near real-time.
+The ROI & Impact: Improved search query response times from 4.5 seconds to 120 milliseconds. Increased successful checkout completion rate by 22%.
+Total Project Cost: $380,000

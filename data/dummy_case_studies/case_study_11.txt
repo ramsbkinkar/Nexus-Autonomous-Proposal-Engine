@@ -1,0 +1,8 @@
+Project Name: Project Lexicon
+Industry: LegalTech
+The Client Challenge: A corporate law firm had an archive of over 50,000 digitized past contracts, case files, and legal briefs. Paralegals spent hundreds of hours manually searching through these PDFs to find precedent clauses for new contracts, leading to slow turnaround times and high unbillable hours.
+Our Technical Solution: We built a custom Retrieval-Augmented Generation (RAG) system to act as an intelligent legal assistant. We processed the 50,000 PDFs using a robust OCR and text-extraction pipeline. The extracted text was strategically chunked (preserving paragraph context and legal clause boundaries) and converted into dense vector embeddings using OpenAI's text-embedding-3-large model.
+These embeddings were stored in Pinecone, a highly scalable vector database. When a paralegal queried the system (e.g., "Find indemnification clauses related to intellectual property in software vendors"), the application vectorized the query, performed a semantic similarity search in Pinecone, and retrieved the top 5 most relevant document chunks.
+We utilized LangChain as the orchestration framework to chain this retrieval process with an OpenAI GPT-4 prompt. GPT-4 synthesized the retrieved chunks into a coherent, accurate answer, explicitly citing the source document filenames and page numbers to ensure traceability and eliminate AI hallucinations.
+The ROI & Impact: Reduced manual document review time by 75%. Saved the firm an estimated $1.5M annually in unbillable paralegal hours.
+Total Project Cost: $210,000

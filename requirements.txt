@@ -1,0 +1,16 @@
+streamlit
+langchain
+langchain-openai
+langgraph
+azure-search-documents==11.4.0
+azure-identity
+azure-storage-blob
+python-dotenv
+markdown
+yfinance
+xhtml2pdf
+pandas
+openpyxl
+icalendar
+duckduckgo-search
+requests

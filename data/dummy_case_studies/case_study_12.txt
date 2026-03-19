@@ -1,0 +1,8 @@
+Project Name: Project Sentinel
+Industry: Supply Chain & Cold Storage
+The Client Challenge: A pharmaceutical distributor needed to monitor the temperature of vaccines in transit across thousands of refrigerated trucks. Their legacy system logged data locally and only uploaded it at the end of the trip. If a refrigeration unit failed mid-transit, entire batches of vaccines were spoiled before anyone knew.
+Our Technical Solution: We architected an end-to-end IoT real-time streaming platform on Azure. We equipped the fleet with cellular IoT sensors that transmitted temperature, humidity, and GPS data every 5 seconds. This data was ingested securely via Azure IoT Hub, which managed millions of simultaneous device connections and handled bi-directional communication.
+The raw data streams were processed in real-time using Azure Stream Analytics. We wrote temporal logic queries to detect anomalies—specifically, if a truck's temperature exceeded the safe threshold for more than 60 consecutive seconds. When an anomaly was detected, an alert was immediately pushed to an Azure Event Hub.
+The Event Hub triggered Azure Functions that automatically dispatched SMS alerts to the driver and rerouted the nearest maintenance crew. For long-term storage and compliance auditing, the time-series data was routed to TimescaleDB (on PostgreSQL), allowing for highly efficient queries of historical temperature compliance.
+The ROI & Impact: Prevented the spoilage of $4.2M worth of sensitive pharmaceuticals in the first year of deployment. Achieved sub-2-second latency from sensor anomaly to driver alert.
+Total Project Cost: $580,000

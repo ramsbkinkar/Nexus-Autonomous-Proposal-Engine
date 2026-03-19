@@ -1,0 +1,8 @@
+Project Name: Project Nexus
+Industry: Telecommunications
+The Client Challenge: A telecom provider was suffering from "dashboard chaos." Marketing used Salesforce, billing used a proprietary system, and support used Zendesk. Each department reported different numbers for subscriber churn because there was no single source of truth or centralized data model.
+Our Technical Solution: We implemented a modern Data Mesh architecture centered around Snowflake and dbt (data build tool). We first standardized the ingestion layer by deploying Fivetran to automatically sync data from Salesforce, Zendesk, and the billing APIs directly into Snowflake raw schemas with zero custom code.
+We then introduced dbt to handle all data transformations entirely within Snowflake using pure SQL. We established strict data governance by creating a unified dimensional model. dbt allowed us to implement version control (via Git) for all analytics engineering, including automated testing to ensure primary keys were unique and relationships between tables were valid.
+We organized the Snowflake architecture into distinct data products owned by specific domains (e.g., a "Customer 360" schema, a "Revenue" schema). This empowered individual departments to build their own Tableau dashboards confidently, knowing the underlying tables were tested, documented, and governed by the dbt pipeline.
+The ROI & Impact: Reconciled reporting discrepancies across all departments. Reduced time-to-market for new executive dashboards from 3 weeks to 2 days.
+Total Project Cost: $350,000
