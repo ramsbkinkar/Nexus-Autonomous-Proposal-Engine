@@ -61,9 +61,11 @@ def create_pdf(md_text, image_link=None):
     return result_file.getvalue()
 
 # --- HELPER TO DISPLAY PDF IN STREAMLIT ---
+# --- HELPER TO DISPLAY PDF IN STREAMLIT ---
 def display_pdf(pdf_bytes):
     base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
+    # Using an <embed> tag instead of <iframe> is often more compatible with cloud hosting
+    pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf">'
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 # --- INITIALIZE SESSION STATE ---
@@ -301,6 +303,7 @@ elif st.session_state.current_status == "approved":
     
     with tab1:
         display_pdf(st.session_state.final_pdf_bytes)
+        st.info("💡 Tip: If the PDF preview doesn't load, use the 'Quick Downloads' button in the sidebar.")
         
     with tab2:
         st.image(st.session_state.final_img_bytes, use_container_width=True)
