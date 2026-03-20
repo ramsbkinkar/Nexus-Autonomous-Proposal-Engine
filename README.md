@@ -26,7 +26,7 @@ This application simulates a fully autonomous enterprise sales and engineering w
 * **Email Automation:** SMTP (`smtplib`)
 
 ## 🚀 Live Demo
-[Insert your Streamlit Cloud URL here]
+(https://nexus-autonomous-proposal-engine.streamlit.app/)
 
 > **Note on Sandbox Preview:** Depending on browser security policies, the native PDF preview may be sandboxed. You can view the raw markdown directly in the UI or use the "Quick Downloads" sidebar to view the compiled artifacts.
 
