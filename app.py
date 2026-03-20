@@ -302,6 +302,7 @@ elif st.session_state.current_status == "awaiting_approval":
         st.info("⚠️ Only Architects and Managers can approve or reject drafts. Switch your role in the sidebar.")
 
 # --- PHASE 3: APPROVED ---
+# --- PHASE 3: APPROVED ---
 elif st.session_state.current_status == "approved":
     st.balloons()
     st.success("🎉 Proposal Officially Approved! Logs sent to Azure Vault and emails dispatched.")
@@ -310,14 +311,23 @@ elif st.session_state.current_status == "approved":
     tab1, tab2, tab3 = st.tabs(["📄 Client Proposal", "🖼️ Cloud Architecture", "🛡️ Project Knowledge Guide"])
     
     with tab1:
-        display_pdf(st.session_state.final_pdf_bytes)
-        st.info("💡 Tip: If the PDF preview doesn't load, use the 'Quick Downloads' button in the sidebar.")
+        st.info("💡 Note: Previewing raw text below. Download the official, branded PDF from the sidebar.")
+        st.markdown(st.session_state.workflow_state["draft_proposal"])
         
     with tab2:
-        st.image(st.session_state.final_img_bytes, use_container_width=True)
+        st.image(st.session_state.final_img_bytes, use_column_width=True)
         
     with tab3:
-        display_pdf(st.session_state.knowledge_guide_bytes)
+        st.info("🛡️ The Project Knowledge Guide has been securely compiled.")
+        st.markdown("### 📥 Document Ready for Download")
+        st.write("To bypass browser security sandboxing, please download the compiled PDF to view the internal team brief.")
+        st.download_button(
+            label="Download Project Knowledge Guide (.pdf)", 
+            data=st.session_state.knowledge_guide_bytes, 
+            file_name="Project_Knowledge_Guide.pdf", 
+            mime="application/pdf", 
+            type="primary"
+        )
     
     st.divider()
     if st.button("🔄 Start New Project", type="secondary"):
