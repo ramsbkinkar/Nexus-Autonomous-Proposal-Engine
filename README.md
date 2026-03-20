@@ -18,7 +18,7 @@ This application simulates a fully autonomous enterprise sales and engineering w
 ## 🛠️ Tech Stack
 * **Framework:** Streamlit
 * **AI Orchestration:** LangChain & LangGraph (Multi-Agent framework)
-* **LLM:** OpenAI (GPT-4o / GPT-3.5)
+* **LLM:** OpenAI (GPT-4o / GPT 04-mini)
 * **Vector Database (RAG):** Azure AI Search
 * **Security & Audit:** Azure Key Vault & Azure Identity
 * **Live Web Search:** DuckDuckGo Search API
