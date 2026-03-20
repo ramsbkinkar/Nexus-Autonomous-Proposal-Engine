@@ -61,13 +61,21 @@ def create_pdf(md_text, image_link=None):
     return result_file.getvalue()
 
 # --- HELPER TO DISPLAY PDF IN STREAMLIT ---
-# --- HELPER TO DISPLAY PDF IN STREAMLIT ---
 def display_pdf(pdf_bytes):
+    # Convert the PDF bytes into a Base64 string
     base64_pdf = base64.b64encode(pdf_bytes).decode('utf-8')
-    # Using an <embed> tag instead of <iframe> is often more compatible with cloud hosting
-    pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf">'
+    
+    # Embed the Base64 string directly into an HTML iframe
+    pdf_display = f"""
+        <iframe 
+            src="data:application/pdf;base64,{base64_pdf}#toolbar=0&navpanes=0&scrollbar=0" 
+            width="100%" 
+            height="600" 
+            type="application/pdf"
+            style="border:none;">
+        </iframe>
+    """
     st.markdown(pdf_display, unsafe_allow_html=True)
-
 # --- INITIALIZE SESSION STATE ---
 if "workflow_state" not in st.session_state:
     st.session_state.workflow_state = None
