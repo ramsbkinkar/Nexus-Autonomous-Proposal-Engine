@@ -87,6 +87,8 @@ if "final_img_bytes" not in st.session_state:
     st.session_state.final_img_bytes = None
 if "knowledge_guide_bytes" not in st.session_state:
     st.session_state.knowledge_guide_bytes = None
+if "knowledge_guide_md" not in st.session_state:
+    st.session_state.knowledge_guide_md = None
 if "show_revision_toast" not in st.session_state:
     st.session_state.show_revision_toast = False
 
@@ -258,6 +260,7 @@ elif st.session_state.current_status == "awaiting_approval":
                 Client Request: {st.session_state.workflow_state['client_requirements']}
                 """
                 manager_md = orchestrator_llm.invoke(manager_prompt).content
+                st.session_state.knowledge_guide_md = manager_md  # <--- WE SAVE THE TEXT HERE
                 st.session_state.knowledge_guide_bytes = create_pdf(f"# Project Knowledge Guide\n\n{manager_md}")
                 step3.write("✅ 3. AI is generating internal Project Knowledge Guide...")
                 
@@ -318,16 +321,9 @@ elif st.session_state.current_status == "approved":
         st.image(st.session_state.final_img_bytes, use_column_width=True)
         
     with tab3:
-        st.info("🛡️ The Project Knowledge Guide has been securely compiled.")
-        st.markdown("### 📥 Document Ready for Download")
-        st.write("To bypass browser security sandboxing, please download the compiled PDF to view the internal team brief.")
-        st.download_button(
-            label="Download Project Knowledge Guide (.pdf)", 
-            data=st.session_state.knowledge_guide_bytes, 
-            file_name="Project_Knowledge_Guide.pdf", 
-            mime="application/pdf", 
-            type="primary"
-        )
+        st.info("💡 Note: Previewing raw text below. Download the official, branded PDF from the sidebar.")
+        # Display the text we saved!
+        st.markdown(f"# Project Knowledge Guide\n\n{st.session_state.knowledge_guide_md}")
     
     st.divider()
     if st.button("🔄 Start New Project", type="secondary"):
