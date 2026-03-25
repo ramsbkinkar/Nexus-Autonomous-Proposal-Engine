@@ -250,7 +250,18 @@ elif st.session_state.current_status == "awaiting_approval":
                 base64_string = base64.b64encode(graphbytes).decode("ascii")
                 img_url = f"https://mermaid.ink/img/{base64_string}?bgColor=white"
                 st.session_state.final_pdf_bytes = create_pdf(st.session_state.workflow_state["draft_proposal"], img_url)
-                st.session_state.final_img_bytes = requests.get(img_url).content
+                
+                # --- REPLACE THIS LINE: ---
+                # st.session_state.final_img_bytes = requests.get(img_url).content
+                
+                # --- WITH THIS NEW SAFE FETCH LOGIC: ---
+                response = requests.get(img_url)
+                if response.status_code == 200:
+                    st.session_state.final_img_bytes = response.content
+                else:
+                    print(f"Mermaid API Error: {response.text}") # For your terminal
+                    st.session_state.final_img_bytes = None
+                    
                 step2.write("✅ 2. Rendering architecture and compiling Client PDF...")
                 
                 step3.write("⏳ 3. AI is generating internal Project Knowledge Guide...")
@@ -318,7 +329,16 @@ elif st.session_state.current_status == "approved":
         st.markdown(st.session_state.workflow_state["draft_proposal"])
         
     with tab2:
-        st.image(st.session_state.final_img_bytes, use_column_width=True)
+        if st.session_state.final_img_bytes:
+            try:
+                st.image(st.session_state.final_img_bytes, use_column_width=True)
+            except Exception as e:
+                st.error("The diagram generated an unreadable image format.")
+                st.code(st.session_state.workflow_state["architecture_diagram"], language="mermaid")
+        else:
+            st.warning("⚠️ The AI generated invalid Mermaid syntax. The Architecture API could not render the image.")
+            st.info("Here is the raw code it tried to generate:")
+            st.code(st.session_state.workflow_state["architecture_diagram"], language="mermaid")
         
     with tab3:
         st.info("💡 Note: Previewing raw text below. Download the official, branded PDF from the sidebar.")
